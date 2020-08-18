@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <title>Author Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body style="background-color:#fff5d7;">
+    <div class="navbar">
+      <a href = "{{ url_for('start') }}">Home</a>
+      <div class="dropdown">
+    	<button class="dropbtn">Book Options
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('addBook') }}">Add</a>
+          <a href = "{{ url_for('modifyBook') }}">Modify</a>
+          <a href = "{{ url_for('deleteBook') }}">Delete</a>
+        </div>
+      </div> 
+      <a href = "{{ url_for('modifyAuthor') }}">Modify Author</a>
+      <div class="dropdown">
+    	<button class="dropbtn">Search 
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('authorRating') }}">Author Rating</a>
+          <a href = "{{ url_for('keywordSearch') }}">Keywords</a>
+          <a href = "{{ url_for('higherRatedAuthorSearch') }}">Authors Rated Higher</a>
+	  <a href = "{{ url_for('friendSearch') }}">Friends</a>
+        </div>
+      </div>
+        <div class="dropdown">
+    	<button class="dropbtn">Extras 
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('aboveAvgBooks') }}">Above Average Books</a>
+        </div>
+      </div>
+      <a href = "{{ url_for('logout') }}">Log Out</a> 
+    </div>
+    <div class="container">
+      <h1>Modify Author</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="Current First Name" name="curFirst" value="{{request.form.curFirst }}">
+        <input type="text" placeholder="Current Last Name" name="curLast" value="{{request.form.curLast }}">
+	<input type="text" placeholder="Current Country" name="curCountry" value="{{request.form.curCountry }}">
+	<input type="text" placeholder="New First Name" name="newFirst" value="{{request.form.newFirst }}">
+        <input type="text" placeholder="New Last Name" name="newLast" value="{{request.form.newLast }}">
+        <input type="text" placeholder="New Country" name="newCountry" value="{{request.form.newCountry }}">
+	<input class="btn btn-default" type="submit" value="Submit">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Add Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <div class="navbar">
+      <a href = "{{ url_for('start') }}">Home</a>
+      <div class="dropdown">
+    	<button class="dropbtn">Book Options
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('addBook') }}">Add</a>
+          <a href = "{{ url_for('modifyBook') }}">Modify</a>
+          <a href = "{{ url_for('deleteBook') }}">Delete</a>
+        </div>
+      </div> 
+      <a href = "{{ url_for('modifyAuthor') }}">Modify Author</a>
+      <div class="dropdown">
+    	<button class="dropbtn">Search 
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('authorRating') }}">Author Rating</a>
+          <a href = "{{ url_for('keywordSearch') }}">Keywords</a>
+          <a href = "{{ url_for('higherRatedAuthorSearch') }}">Authors Rated Higher</a>
+          <a href = "{{ url_for('friendSearch') }}">Friends</a>
+        </div>
+      </div>
+        <div class="dropdown">
+    	<button class="dropbtn">Extras 
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('aboveAvgBooks') }}">Above Average Books</a>
+        </div>
+      </div>
+      <a href = "{{ url_for('logout') }}">Log Out</a> 
+    </div>
+      <h1 style="text-align:center">Add Book</h1>
+      <br>
+      <form action="" method="post">
+        <input type="text" placeholder="ISBN" name="ISBN" value="{{request.form.ISBN }}">
+        <input type="text" placeholder="Title" name="title" value="{{request.form.title }}">
+	<input type="text" placeholder="Year Published" name="yearPublished" value="{{request.form.yearPublished }}">
+        <input type="text" placeholder="First Name" name="firstName" value="{{request.form.firstName }}">
+        <input type="text" placeholder="Last Name" name="lastName" value="{{request.form.lastName }}">
+	<input type="text" placeholder="Country" name="country" value="{{request.form.country }}">
+	<input type="text" placeholder="Rating 0.00 through 5.00" name="rate" value="{{request.form.rate }}">
+        <input class="btn btn-default" type="submit" value="Submit">
+      </form>
+      {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+ <head>
+    <title>Keyword Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+  </head>
+  <body>
+    <div class="navbar">
+      <a href = "{{ url_for('start') }}">Home</a>
+      <div class="dropdown">
+    	<button class="dropbtn">Book Options
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('addBook') }}">Add</a>
+          <a href = "{{ url_for('modifyBook') }}">Modify</a>
+          <a href = "{{ url_for('deleteBook') }}">Delete</a>
+        </div>
+      </div> 
+      <a href = "{{ url_for('modifyAuthor') }}">Modify Author</a>
+      <div class="dropdown">
+    	<button class="dropbtn">Search 
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('authorRating') }}">Author Rating</a>
+          <a href = "{{ url_for('keywordSearch') }}">Keywords</a>
+          <a href = "{{ url_for('higherRatedAuthorSearch') }}">Authors Rated Higher</a>
+  	  <a href = "{{ url_for('friendSearch') }}">Friends</a>
+        </div>
+      </div>
+        <div class="dropdown">
+    	<button class="dropbtn">Extras 
+      	  <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href = "{{ url_for('aboveAvgBooks') }}">Above Average Books</a>
+        </div>
+      </div>
+      <a href = "{{ url_for('logout') }}">Log Out</a> 
+    </div>
+    <br>
+    <form action="" method="post">
+	<input type="text" placeholder="Enter Keyword" name="keyword" value="{{request.form.keyword }}">
+	<input class="btn btn-default" type="submit" value="Submit">
+    </form>
+      <h1 style="text-align:center">Keyword Results</h1>
+    {% if results %}
+      <br>
+      <table style="width:100%" border="1">
+        <thead>
+          <tr>
+            <th>ISBN</th>
+            <th>Title</th>
+	    <th>Year Published</th>
+	    <th>Rating</th>
+            <th>Author</th>
+	    <th>Author Country</th>
+          </tr>
+        </thead>
+        {% for result in results%}
+          <tr>
+            <td style="text-align:center" >{{ result[0] }}</td>
+            <td style="text-align:center" >{{ result[1] }}</td>
+	    <td style="text-align:center" >{{ result[2] }}</td>
+            <td style="text-align:center" >{{ result[3] }}</td>
+	    <td style="text-align:center" >{{ result[4] + " " + result[5] }}</td>
+	    <td style="text-align:center" >{{ result[6] }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+     {% endif %}
+  </body>
+</html>
