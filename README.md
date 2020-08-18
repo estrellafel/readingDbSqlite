@@ -15,4 +15,4 @@ The purpose of this project is to be able to record the books a user has read an
 <img src="imagesForREADME/er.png">
 
 ## Notice
-If going to download the source code the programer will have to put the location of the database in database.py
+If going to run the source code the programer will have to put the location of the database in database.py.
